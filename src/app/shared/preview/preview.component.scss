@@ -1,0 +1,42 @@
+.inbox-deatils {
+    height: 100%;
+    .top-section {
+        border-bottom: 1px solid #0000001c ;
+        padding: 15px;
+        
+        .tittle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            
+            .delete-icon {
+                cursor: pointer;
+                position: absolute;
+                display: block;
+                border-radius: 100%;
+                top: 4px;
+                right: 0;
+            }
+            
+        }
+       
+        .details {
+            display: flex;
+            justify-content: space-between;
+            color: #0000008a;
+            align-items: center;
+        }
+    }
+
+    .message {
+        padding: 20px;
+        p {
+            font-size: 18px;
+        }
+    }
+}
+
+.no-message-selected{
+    margin: 30%;
+}

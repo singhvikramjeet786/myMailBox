@@ -1,0 +1,29 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport
+        role="navigation"
+        mode="side"
+        [opened]="true">
+        <button class="composer-button w-100">
+            compose
+            <i class="fa fa-pencil edit-icon" aria-hidden="true"></i>
+        </button>
+      <mat-nav-list class="mat-nav-list">
+          <ng-container *ngFor="let sidemenu of menuBar; let i = index">
+            <a mat-list-item  class="menu-list" [routerLink]="[sidemenu.path]" (click)="resetSelectedMessage()">
+                <i class="fa fa-inbox" [class]="sidemenu.icon" aria-hidden="true"></i>
+                <span class="d-flex text-aligment-label">
+                    {{sidemenu.fieldName}}
+                    <span> {{sidemenu.count}}</span>
+                </span>
+            </a>
+          </ng-container>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="main-content">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+    
+  </mat-sidenav-container>
+ <app-footer></app-footer>

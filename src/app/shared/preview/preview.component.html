@@ -1,0 +1,23 @@
+<div class="inbox-deatils" *ngIf="selectedMail;">
+<!-- else noMsgSelected"> -->
+    <div class="top-section">
+        <div class="tittle">
+            <h3>{{selectedMail.messageTitle}}</h3>
+            <span class="delete-icon" (click)="deleteMessage(selectedMail)">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+            </span>
+        </div>
+        <div class="details">
+            <span>{{selectedMail.sentBy}}</span>
+            <span>{{selectedMail.messageDeliveryDate | date:'MMM d, y - HH:mm'}}</span>
+        </div>
+    </div>
+    <div class="message">
+        <P> {{selectedMail.messageBody}}</P>
+     </div>
+</div>
+<!-- <ng-template #noMsgSelected>
+    <div class="no-message-selected">
+        <h3>Please select mail to get details here</h3>
+    </div>
+</ng-template> -->

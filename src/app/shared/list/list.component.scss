@@ -1,0 +1,42 @@
+.custom-card {
+    cursor: pointer;
+    border: unset;
+    border-bottom: 1px solid #0000001c;
+    border-radius: 0;
+    .meeage-title {
+        position: relative;
+        .dot {
+            position: absolute;
+            display: block;
+            width: 8px;
+            height: 8px;
+            background: #008cffc9;
+            border-radius: 100%;
+            top: 4px;
+            right: 0;
+        }
+    }
+    .message-details {
+        display: flex;
+        justify-content: space-between;
+        text-transform: uppercase;
+        color: #0000008a;
+        align-items: center;
+    }
+
+    &.active {
+        .meeage-title {
+            color: #008cffc9;
+        }
+        .message-details {
+            color: #008cffc9;
+        }
+        .card-body{
+            border: red solid 1px;
+        }
+    } 
+}
+.no-message-selected{
+    margin: 70% 15%;
+    color: gray;
+}
