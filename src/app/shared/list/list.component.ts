@@ -21,17 +21,30 @@ export class ListComponent implements OnInit {
   }
 
   selectedMessage(message:Message){
-    message.isRead = true;
+    
+    if(!message.isRead){
+      message.isRead = true;
+      let deletecmsg = 0;
+      let count = this.mymailService.getcurrentInboxUnreadCount();
+        console.log(count);
+        deletecmsg = count-1;
+        
+      if(this.route.url.indexOf('/inbox') > -1){
+        this.mymailService.setInboxUnreadCount(deletecmsg);
+      }
+    }
     let count = 0;
+    // this.msgList[index].isSelected =
+
     this.msgList.forEach((msg,index)=>{
       msg.id==message.id?msg.isSelected = true : msg.isSelected = false
-      if(!msg.isRead){
-        count++;
-      }
+      // if(!msg.isRead){
+      //   count++;
+      // }
     });
-    if(this.route.url.indexOf('/inbox') > -1){
-      this.mymailService.setInboxUnreadCount(count);
-    }
+    // if(this.route.url.indexOf('/inbox') > -1){
+    //   this.mymailService.setInboxUnreadCount(count);
+    // }
     this.mymailService.setSelectedMessage(message);
 
   }
