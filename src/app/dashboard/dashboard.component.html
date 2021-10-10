@@ -3,7 +3,7 @@
         role="navigation"
         mode="side"
         [opened]="true">
-        <button class="composer-button w-100">
+        <button class="composer-button w-100" (click)="openDialog()">
             compose
             <i class="fa fa-pencil edit-icon" aria-hidden="true"></i>
         </button>
@@ -24,6 +24,5 @@
             <router-outlet></router-outlet>
         </div>
     </mat-sidenav-content>
-    
   </mat-sidenav-container>
  <app-footer></app-footer>

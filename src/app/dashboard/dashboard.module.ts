@@ -9,6 +9,8 @@ import { TrashComponent } from '../components/trash/trash.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { DraftComponent } from '../components/draft/draft.component';
 import { SentComponent } from '../components/sent/sent.component';
+import { ComposeMailComponent } from '../components/compose-mail/compose-mail.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,12 +19,14 @@ import { SentComponent } from '../components/sent/sent.component';
     TrashComponent,
     FooterComponent,
     DraftComponent,
-    SentComponent
+    SentComponent,
+    ComposeMailComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
     ShareddModule,
+    ReactiveFormsModule,
     DashboradRoutingModule
   ],
   providers: [],

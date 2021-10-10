@@ -18,6 +18,10 @@ export class MymailService {
   public trashMessages: Observable<Message[]>;
   private inboxMessagesList = new BehaviorSubject<Message[]>(this.teashMailList);
   public inboxMessages: Observable<Message[]>;
+  private draftMessagesList = new BehaviorSubject<Message[]>([]);
+  public draftMessages: Observable<Message[]>;
+  private sentMessagesList = new BehaviorSubject<Message[]>([]);
+  public sentMessages: Observable<Message[]>;
 
   private currentDeletedMessage = new BehaviorSubject<any>(null);
   public curredeletedMessage: Observable<Message>;
@@ -28,8 +32,16 @@ export class MymailService {
     this.selectedMessage = this.message.asObservable();
     this.currentInboxUnreadCount = this.inboxUnreadCount.asObservable();
     this.curredeletedMessage = this.currentDeletedMessage.asObservable();
+    this.draftMessages = this.draftMessagesList.asObservable();
+    this.sentMessages = this.sentMessagesList.asObservable();
   }
 
+  setDraftMessagesList(msgList :Message[]){
+    this.draftMessagesList.next(msgList);
+  }
+  setSentMessagesList(msgList :Message[]){
+    this.sentMessagesList.next(msgList);
+  }
   setCurrentDeletedMessage(msg :Message){
     this.currentDeletedMessage.next(msg);
   }
@@ -40,6 +52,10 @@ export class MymailService {
 
   setInboxUnreadCount(count:number){
     this.inboxUnreadCount.next(count);
+  }
+
+  getcurrentInboxUnreadCount(){
+    return this.inboxUnreadCount.getValue();
   }
    /**
    * method to set inbox messages list

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MymailService } from '../../service/mymail.service';
 
 @Component({
   selector: 'app-sent',
@@ -8,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class SentComponent implements OnInit {
 
   sentMessageList:any = [];
-
-  constructor() { }
+  constructor(public mymailService:MymailService) { }
 
   ngOnInit(): void {
+    this.mymailService.sentMessages.subscribe(msgList =>{
+      this.sentMessageList = msgList;
+    })
   }
 
 }

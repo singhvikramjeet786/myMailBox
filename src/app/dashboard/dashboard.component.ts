@@ -5,6 +5,8 @@ import { map, shareReplay } from 'rxjs/operators';
 import { Sidenavbar } from '../models/sidenavbar';
 import { MymailService } from '../service/mymail.service';
 import { Message } from '../models/message';
+import { MatDialog } from '@angular/material/dialog';
+import { ComposeMailComponent } from '../components/compose-mail/compose-mail.component';
 
 
 @Component({
@@ -19,9 +21,13 @@ export class DashboardComponent implements OnInit {
     {fieldName:'Sent',icon:'fa-paper-plane',path:'./sent',count:0,isSelected:false},
     {fieldName:'Draft',icon:'fa-pencil-square-o',path:'./draft',count:0,isSelected:false},
     {fieldName:'Trash',icon:'fa-trash',path:'./trash',count:0,isSelected:false},
+    {fieldName:'Archive',icon:'fa-trash',path:'./trash',count:0,isSelected:false},
   ]
 
-  constructor(public mymailService:MymailService) {}
+  DraftMailList:Message[] = [];
+  SentMailList:Message[] = [];
+
+  constructor(public mymailService:MymailService,public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.mymailService.currentInboxUnreadCount.subscribe(count=>{
@@ -34,5 +40,37 @@ export class DashboardComponent implements OnInit {
 
   resetSelectedMessage(){
     this.mymailService.setSelectedMessage(null);
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ComposeMailComponent, {
+      width: '80vw',
+      // data: { name: "Vikram", city: "Amritsar" }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      let message: Message = {} as Message;
+      message.id = new Date().getTime().toString();
+      message.sentBy = result.data.value.from;
+      message.messageTitle = result.data.value.subject;
+      message.messageBody = result.data.value.body;
+      message.messageDeliveryDate = result.data.value.messageDeliveryDate;
+      message.isSelected = false;
+      message.isRead = false;
+      if (result.type == "Save") {
+        this.DraftMailList.push(message);
+        this.menuBar.forEach(menu=> {
+          menu.fieldName == 'Draft'? menu.count = this.DraftMailList.length:''
+        });
+        this.mymailService.setDraftMessagesList(this.DraftMailList);
+      }
+      else if (result.type == "Send") {
+        this.SentMailList.push(message);
+        this.menuBar.forEach(menu=> {
+          menu.fieldName == 'Sent'? menu.count = this.SentMailList.length:''
+        });
+        this.mymailService.setSentMessagesList(this.SentMailList);
+      }
+      console.log(this.DraftMailList, this.SentMailList)
+    });
   }
 }

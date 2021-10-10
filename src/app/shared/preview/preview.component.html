@@ -3,6 +3,9 @@
     <div class="top-section">
         <div class="tittle">
             <h3>{{selectedMail.messageTitle}}</h3>
+            <span class="new-icon" (click)="deleteMessage(selectedMail)">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+            </span> 
             <span class="delete-icon" (click)="deleteMessage(selectedMail)">
                 <i class="fa fa-trash" aria-hidden="true"></i>
             </span>

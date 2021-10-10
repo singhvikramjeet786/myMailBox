@@ -1,0 +1,35 @@
+.custom-form {
+    mat-form-field {
+      width: 100%;
+      position: relative;
+    
+    }
+    .custom-textarea{
+      resize: none;
+      height: 107px;
+    }
+    ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+      color: #000000;
+  }
+    ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+      color: #000000;
+    }
+
+    ::placeholder {
+      font-size: 14px;
+    }
+    .custom-form-action {
+      button {
+        color: #000000;
+        border: 1px solid #000000;
+        border-radius: unset;
+        font-size: 15px;
+        background: rgb(0 0 0 / 90%);
+        color: #fff;
+        &:hover {
+          background: #fff;
+          color: #000000;
+        }
+      }
+    }
+  }
