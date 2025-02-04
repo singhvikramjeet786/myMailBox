@@ -16,10 +16,12 @@ export class InboxComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.inboxMessageList.length == 0 ){
+      //fetching all emails
       this.mymailService.getInboxMails().subscribe(msgList=>{
         this.inboxMessageList = msgList;
         let count = 0;
         this.inboxMessageList.forEach((msg,index)=>{
+          //counting no of unread emails
           if(!msg.isRead){
             count++;
           }
